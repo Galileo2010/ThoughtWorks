@@ -16,6 +16,9 @@ Game::Game()
 	for (int k = 0; k < 14; ++k) {
 		cellStatus[k].resize(14);//每行为c列
 	}
+	cellStatus[0][1] = true;
+	cellStatus[0][2] = true;
+	cellStatus[1][0] = true;
 }
 
 Game::~Game()
@@ -32,8 +35,8 @@ void Game::Show()
 	for (int i = 0; i < cellStatus.size(); i++)
 		for (int j = 0; j < cellStatus[i].size(); j++)
 		{
-			if (cellStatus[i][j] = true)
-				glRecti(i - 7, 7 - j, i - 6, 6 - j);
+			if (cellStatus[i][j] == true)
+				glRecti(j - 7, 7 - i, j - 6, 6 - i);
 		}
 }
 
