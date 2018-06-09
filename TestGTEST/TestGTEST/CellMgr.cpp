@@ -1,24 +1,24 @@
 #pragma once
 #include "stdafx.h"
 #include "CellMgr.h"
-Cell::Cell()
-{
-}
-
-Cell::~Cell()
-{
-}
-
 
 Game::Game()
 {
-	cellStatus.resize(14);//r行
-	for (int k = 0; k < 14; ++k) {
-		cellStatus[k].resize(14);//每行为c列
-	}
-	cellStatus[0][1] = true;
-	cellStatus[0][2] = true;
-	cellStatus[1][0] = true;
+	autoEvolution = false;
+	cellStatus.resize(14);
+	for (int k = 0; k < 14; ++k)
+		cellStatus[k].resize(14);
+
+	srand((unsigned)time(NULL));
+	
+	for (int i = 0; i < cellStatus.size(); i++)
+		for (int j = 0; j < cellStatus[i].size(); j++)
+		{
+			if (rand() % 2 == 0)
+				cellStatus[i][j] = true;
+			else
+				cellStatus[i][j] = false;
+		}
 }
 
 Game::~Game()
@@ -36,8 +36,14 @@ void Game::Show()
 		for (int j = 0; j < cellStatus[i].size(); j++)
 		{
 			if (cellStatus[i][j] == true)
+			{
+				srand((unsigned)time(NULL));
+				glColor3i(rand() % 255, rand() % 255, rand() % 255);
 				glRecti(j - 7, 7 - i, j - 6, 6 - i);
+			}
+				
 		}
+	glColor3f(0, 0, 0);
 }
 
 void Game::UpdateCurrentStatus()
@@ -45,7 +51,7 @@ void Game::UpdateCurrentStatus()
 	vector<vector<liveStatus>> cellNextStatus;
 	cellNextStatus.resize(cellStatus.size());
 	for (int i = 0; i < cellStatus.size(); ++i) {
-		cellStatus[i].resize(cellStatus[0].size());
+		cellNextStatus[i].resize(cellStatus[0].size());
 	}
 
 	for (int i = 0; i < cellStatus.size(); i++)
@@ -102,4 +108,9 @@ liveStatus Game::GetNextMomentCellStatus(int i, int j)
 		return keep;
 	else
 		return dead;
+}
+
+bool Game::IsInCellStatusVector(int i, int j)
+{
+	return i >= 0 && i < cellStatus.size() && j >= 0 && j < cellStatus[0].size();
 }
