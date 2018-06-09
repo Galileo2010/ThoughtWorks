@@ -3,7 +3,7 @@
 
 TEST(testGame, testGetNumberOfLivingCellsAround0)
 {
-	Game g0;
+	Game g0(3,3);
 	g0.cellStatus[0][0] = 0;
 	g0.cellStatus[0][1] = 1;
 	g0.cellStatus[0][2] = 1;
@@ -19,7 +19,7 @@ TEST(testGame, testGetNumberOfLivingCellsAround0)
 
 TEST(testGame, testGetNumberOfLivingCellsAround1)
 {
-	Game g0;
+	Game g0(3, 3);
 	g0.cellStatus[0][0] = 0;
 	g0.cellStatus[0][1] = 1;
 	g0.cellStatus[0][2] = 1;
@@ -35,7 +35,7 @@ TEST(testGame, testGetNumberOfLivingCellsAround1)
 
 TEST(testGame, testGetNumberOfLivingCellsAround2)
 {
-	Game g0;
+	Game g0(3, 3);
 	g0.cellStatus[0][0] = 0;
 	g0.cellStatus[0][1] = 1;
 	g0.cellStatus[0][2] = 1;

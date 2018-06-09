@@ -13,12 +13,6 @@ Game::~Game()
 {
 }
 
-void Game::SetSize(int i_, int j_)
-{
-	rows = i_;
-	columns = j_;
-}
-
 void Game::SetColor(int i, int j)
 {
 	int age = ages[i][j];
@@ -39,7 +33,7 @@ void Game::Show()
 			if (cellStatus[i][j] == true)
 			{
 				SetColor(i, j);
-				glRecti(j - columns / 2, rows / 2 - i, j - columns / 2 - 1, rows / 2 - 1 - i);
+				glRecti(j - columns / 2, rows / 2 - i, j - columns / 2 + 1, rows / 2 - 1 - i);// i行j列对应的矩形坐标
 			}		
 }
 
@@ -88,16 +82,12 @@ int Game::GetNumberOfLivingCellsAround(int i, int j)
 		if (cellStatus[i - 1][j + 1] == true)	counter++;
 	if (IsInCellStatusVector(i, j - 1))
 		if (cellStatus[i][j - 1] == true)		counter++;
-
 	if (IsInCellStatusVector(i, j + 1))
 		if (cellStatus[i][j + 1] == true)		counter++;
-
 	if (IsInCellStatusVector(i + 1, j - 1))
 		if (cellStatus[i + 1][j - 1] == true)	counter++;
-
 	if (IsInCellStatusVector(i + 1, j))
 		if (cellStatus[i + 1][j] == true)		counter++;
-
 	if (IsInCellStatusVector(i + 1, j + 1))
 		if (cellStatus[i + 1][j + 1] == true)	counter++;
 	return counter;

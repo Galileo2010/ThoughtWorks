@@ -13,21 +13,22 @@ public:
 	Game();
 	Game(int i, int j);
 	~Game();
-
+	
 	vector<vector<bool>> cellStatus;	// ´æ»î×´Ì¬
 	
-	void SetAutoEvolution(bool autoEvolution_);
-	bool GetAutoEvolution();
+	void Init();
 	void UpdateCurrentStatus();
+	bool IsInCellStatusVector(int i, int j);
 	int  GetNumberOfLivingCellsAround(int i, int j);
 	liveStatus GetNextMomentCellStatus(int i, int j);
-	bool IsInCellStatusVector(int i, int j);
-	void Init();
+	
+	
+	void SetColor(int i, int j);
 	void Show();
 	void ReStart();
-	void SetSize(int i_, int j_);
-	void SetColor(int i, int j);
 
+	void SetAutoEvolution(bool autoEvolution_);
+	bool GetAutoEvolution();
 	void SetsleepTime(int sleeptime_);
 	int GetsleepTime()  const;
 private:
