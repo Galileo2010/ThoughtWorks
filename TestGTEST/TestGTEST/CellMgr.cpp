@@ -10,8 +10,13 @@ Game::Game(int i_,int j_):rows(i_ ), columns(j_)
 	autoEvolution = false;
 	sleepTime = 200;
 	cellStatus.resize(rows);
+	ages.resize(rows);
 	for (int k = 0; k < rows; ++k)
+	{
 		cellStatus[k].resize(columns);
+		ages[k].resize(columns);
+	}
+		
 
 	srand((unsigned)time(NULL));
 	
@@ -19,9 +24,15 @@ Game::Game(int i_,int j_):rows(i_ ), columns(j_)
 		for (int j = 0; j < columns; j++)
 		{
 			if (rand() % 2 == 0)
+			{
 				cellStatus[i][j] = true;
+				ages[i][j] = 1;
+			}
 			else
+			{
 				cellStatus[i][j] = false;
+				ages[i][j] = 0;
+			}
 		}
 }
 
@@ -40,6 +51,40 @@ void Game::SetCellStatus()
 
 }
 
+void Game::SetColor(int i, int j)
+{
+	int delta = ages[i][j];
+	switch (delta)
+	{
+		case 1:
+		{
+			glColor3f(0, 0, 128.0/255);
+			break;
+		}
+		case 2:
+		{
+			glColor3f(65/255.0, 105 / 255.0, 225 / 255.0);
+			break;
+		}
+		case 3:
+		{
+			glColor3f(100 / 255.0, 149 / 255.0, 237 / 255.0);
+
+			break;
+		}
+		case 4:
+		{
+			glColor3f(176 / 255.0, 196 / 255.0, 222 / 255.0);
+			break;
+		}
+		default:
+		{
+			glColor3f(176 / 255.0, 196 / 255.0, 222 / 255.0);
+			break;
+		}
+	}
+}
+
 void Game::Show()
 {
 	//glColor4f(0.7, 0.7, 0.7, log(1 + numberOfIterations));
@@ -47,7 +92,10 @@ void Game::Show()
 	for (int i = 0; i < cellStatus.size(); i++)
 		for (int j = 0; j < cellStatus[i].size(); j++)
 			if (cellStatus[i][j] == true)
+			{
+				SetColor(i, j);
 				glRecti(j - columns / 2, rows / 2 - i, j - columns / 2 - 1, rows / 2 - 1 - i);
+			}		
 }
 
 void Game::UpdateCurrentStatus()
@@ -66,9 +114,23 @@ void Game::UpdateCurrentStatus()
 		for (int j = 0; j < cellStatus[i].size(); j++)
 		{
 			if (cellNextStatus[i][j] == living)
+			{
 				cellStatus[i][j] = true;
+				ages[i][j]++;
+			}
+				
 			else if (cellNextStatus[i][j] == dead)
+			{
 				cellStatus[i][j] = false;
+				ages[i][j] = 0;
+			}
+			else
+			{
+				if (ages[i][j] > 0)
+				{
+					ages[i][j]++;
+				}
+			}
 		}
 
 	numberOfIterations++;

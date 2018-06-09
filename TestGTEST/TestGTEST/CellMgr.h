@@ -13,8 +13,10 @@ public:
 	Game();
 	Game(int i, int j);
 	~Game();
-
+	
+	vector<vector<int>> ages;// 存放存活的次数
 	vector<vector<bool>> cellStatus;
+
 	bool autoEvolution;
 	int rows;
 	int columns;
@@ -29,6 +31,7 @@ public:
 	void Show();
 	void ReStart();
 	void SetSizeofij(int i_, int j_);
+	void SetColor(int i, int j);
 private:
 
 
