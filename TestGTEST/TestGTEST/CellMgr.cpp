@@ -3,6 +3,8 @@
 #include "CellMgr.h"
 Cell::Cell()
 {
+	int x;
+	int y;
 }
 
 Cell::~Cell()
@@ -29,24 +31,24 @@ void Game::SetCellStatus()
 
 void Game::UpdateCurrentStatus()
 {
-	vector<vector<liveStatus>> cellliveStatus;
-	cellliveStatus.resize(cellStatus.size());
+	vector<vector<liveStatus>> cellNextStatus;
+	cellNextStatus.resize(cellStatus.size());
 	for (int i = 0; i < cellStatus.size(); ++i) {
 		cellStatus[i].resize(cellStatus[0].size());
 	}
+
 	for (int i = 0; i < cellStatus.size(); i++)
 		for (int j = 0; j < cellStatus[i].size(); j++)
-			cellliveStatus[i][j] = GetNextMomentCellStatus(i, j);
+			cellNextStatus[i][j] = GetNextMomentCellStatus(i, j);
 
 	for (int i = 0; i < cellStatus.size(); i++)
 		for (int j = 0; j < cellStatus[i].size(); j++)
 		{
-			if (cellliveStatus[i][j] == living)
+			if (cellNextStatus[i][j] == living)
 				cellStatus[i][j] = true;
-			else if (cellliveStatus[i][j] == dead)
+			else if (cellNextStatus[i][j] == dead)
 				cellStatus[i][j] = false;
 		}
-			
 };
 
 int Game::GetNumberOfLivingCellsAround(int i, int j)
