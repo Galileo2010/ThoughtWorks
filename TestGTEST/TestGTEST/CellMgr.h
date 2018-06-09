@@ -13,26 +13,30 @@ public:
 	Game();
 	Game(int i, int j);
 	~Game();
+
+	vector<vector<bool>> cellStatus;	// 存活状态
 	
-	vector<vector<int>> ages;// 存放存活的次数
-	vector<vector<bool>> cellStatus;
+	void SetAutoEvolution(bool autoEvolution_);
+	bool GetAutoEvolution();
+	void UpdateCurrentStatus();
+	int  GetNumberOfLivingCellsAround(int i, int j);
+	liveStatus GetNextMomentCellStatus(int i, int j);
+	bool IsInCellStatusVector(int i, int j);
+	void Init();
+	void Show();
+	void ReStart();
+	void SetSize(int i_, int j_);
+	void SetColor(int i, int j);
+
+	void SetsleepTime(int sleeptime_);
+	int GetsleepTime()  const;
+private:
 
 	bool autoEvolution;
 	int rows;
 	int columns;
 	int sleepTime;
 	int numberOfIterations;
-
-	void SetCellStatus();
-	void UpdateCurrentStatus();
-	int  GetNumberOfLivingCellsAround(int i, int j);
-	liveStatus GetNextMomentCellStatus(int i, int j);
-	bool IsInCellStatusVector(int i, int j);
-	void Show();
-	void ReStart();
-	void SetSizeofij(int i_, int j_);
-	void SetColor(int i, int j);
-private:
-
-
+	vector<vector<int>> ages;			// 年龄
+	
 };
