@@ -35,5 +35,8 @@
     <ClCompile Include="TestCase.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
+    <ClCompile Include="CellMgr.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>

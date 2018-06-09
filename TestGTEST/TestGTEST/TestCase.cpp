@@ -1,23 +1,17 @@
 #include "stdafx.h"
 #include <gtest\gtest.h>
 
-int Add(int a, int b)
+TEST(testGame, testGetNumberOfLivingCellsAround0)
 {
-	return a + b;
-}
-
-TEST(testCase, test0)
-{
-	EXPECT_EQ(14, Add(4, 10));//EXPECT_EQ是比较两个值是否相等
-}
-
-TEST(testCase, test1)
-{
-	/*本用例不过*/
-	EXPECT_EQ(6, Add(5, 7));
-}
-
-TEST(testCase, test2)
-{
-	EXPECT_EQ(28, Add(10, 18));
+	Game g0;
+	g0.cellStatus[0][0] = 0;
+	g0.cellStatus[0][1] = 1;
+	g0.cellStatus[0][2] = 1;
+	g0.cellStatus[1][0] = 1;
+	g0.cellStatus[1][1] = 0;
+	g0.cellStatus[1][2] = 0;
+	g0.cellStatus[2][0] = 0;
+	g0.cellStatus[2][1] = 0;
+	g0.cellStatus[2][2] = 0;
+	EXPECT_EQ(3, g0.GetNumberOfLivingCellsAround(0, 0));//EXPECT_EQ是比较两个值是否相等
 }
