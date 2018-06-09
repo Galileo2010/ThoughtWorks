@@ -11,10 +11,15 @@ class Game
 {
 public:
 	Game();
+	Game(int i, int j);
 	~Game();
 
 	vector<vector<bool>> cellStatus;
 	bool autoEvolution;
+	int rows;
+	int columns;
+	int sleepTime;
+	int numberOfIterations;
 
 	void SetCellStatus();
 	void UpdateCurrentStatus();
@@ -22,6 +27,8 @@ public:
 	liveStatus GetNextMomentCellStatus(int i, int j);
 	bool IsInCellStatusVector(int i, int j);
 	void Show();
+	void ReStart();
+	void SetSizeofij(int i_, int j_);
 private:
 
 

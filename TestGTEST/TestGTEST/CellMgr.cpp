@@ -2,17 +2,21 @@
 #include "stdafx.h"
 #include "CellMgr.h"
 
-Game::Game()
+Game::Game(){}
+
+Game::Game(int i_,int j_):rows(i_ ), columns(j_)
 {
+	numberOfIterations = 0;
 	autoEvolution = false;
-	cellStatus.resize(14);
-	for (int k = 0; k < 14; ++k)
-		cellStatus[k].resize(14);
+	sleepTime = 200;
+	cellStatus.resize(rows);
+	for (int k = 0; k < rows; ++k)
+		cellStatus[k].resize(columns);
 
 	srand((unsigned)time(NULL));
 	
-	for (int i = 0; i < cellStatus.size(); i++)
-		for (int j = 0; j < cellStatus[i].size(); j++)
+	for (int i = 0; i < rows; i++)
+		for (int j = 0; j < columns; j++)
 		{
 			if (rand() % 2 == 0)
 				cellStatus[i][j] = true;
@@ -25,6 +29,12 @@ Game::~Game()
 {
 }
 
+void Game::SetSizeofij(int i_, int j_)
+{
+	rows = i_;
+	columns = j_;
+}
+
 void Game::SetCellStatus()
 {
 
@@ -32,18 +42,12 @@ void Game::SetCellStatus()
 
 void Game::Show()
 {
+	//glColor4f(0.7, 0.7, 0.7, log(1 + numberOfIterations));
+	glColor4f(0.7, 0.7, 0.7, 1);
 	for (int i = 0; i < cellStatus.size(); i++)
 		for (int j = 0; j < cellStatus[i].size(); j++)
-		{
 			if (cellStatus[i][j] == true)
-			{
-				srand((unsigned)time(NULL));
-				glColor3i(rand() % 255, rand() % 255, rand() % 255);
-				glRecti(j - 7, 7 - i, j - 6, 6 - i);
-			}
-				
-		}
-	glColor3f(0, 0, 0);
+				glRecti(j - columns / 2, rows / 2 - i, j - columns / 2 - 1, rows / 2 - 1 - i);
 }
 
 void Game::UpdateCurrentStatus()
@@ -66,6 +70,8 @@ void Game::UpdateCurrentStatus()
 			else if (cellNextStatus[i][j] == dead)
 				cellStatus[i][j] = false;
 		}
+
+	numberOfIterations++;
 };
 
 int Game::GetNumberOfLivingCellsAround(int i, int j)
@@ -113,4 +119,18 @@ liveStatus Game::GetNextMomentCellStatus(int i, int j)
 bool Game::IsInCellStatusVector(int i, int j)
 {
 	return i >= 0 && i < cellStatus.size() && j >= 0 && j < cellStatus[0].size();
+}
+
+void Game::ReStart()
+{
+	autoEvolution = false;
+	srand((unsigned)time(NULL));
+	for (int i = 0; i < cellStatus.size(); i++)
+		for (int j = 0; j < cellStatus[i].size(); j++)
+		{
+			if (rand() % 2 == 0)
+				cellStatus[i][j] = true;
+			else
+				cellStatus[i][j] = false;
+		}
 }
