@@ -3,8 +3,6 @@
 #include "CellMgr.h"
 Cell::Cell()
 {
-	int x;
-	int y;
 }
 
 Cell::~Cell()
@@ -14,9 +12,9 @@ Cell::~Cell()
 
 Game::Game()
 {
-	cellStatus.resize(3);//r行
-	for (int k = 0; k < 3; ++k) {
-		cellStatus[k].resize(3);//每行为c列
+	cellStatus.resize(14);//r行
+	for (int k = 0; k < 14; ++k) {
+		cellStatus[k].resize(14);//每行为c列
 	}
 }
 
@@ -27,6 +25,16 @@ Game::~Game()
 void Game::SetCellStatus()
 {
 
+}
+
+void Game::Show()
+{
+	for (int i = 0; i < cellStatus.size(); i++)
+		for (int j = 0; j < cellStatus[i].size(); j++)
+		{
+			if (cellStatus[i][j] = true)
+				glRecti(i - 7, 7 - j, i - 6, 6 - j);
+		}
 }
 
 void Game::UpdateCurrentStatus()

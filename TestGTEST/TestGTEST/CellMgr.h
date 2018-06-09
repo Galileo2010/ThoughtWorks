@@ -12,9 +12,11 @@ class Cell
 public:
 	Cell();
 	~Cell();
+	
 	int x;
 	int y;
 	bool blive;
+
 private:
 
 };
@@ -37,6 +39,7 @@ public:
 	{
 		return i >= 0 && i < cellStatus.size() && j >= 0 && j < cellStatus[0].size();
 	}
+	void Show();
 private:
 
 
