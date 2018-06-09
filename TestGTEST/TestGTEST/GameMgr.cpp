@@ -1,6 +1,6 @@
 #pragma once
 #include "stdafx.h"
-#include "CellMgr.h"
+#include "GameMgr.h"
 
 Game::Game(){}
 

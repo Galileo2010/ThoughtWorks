@@ -16,7 +16,6 @@ TEST(testGame, testGetNumberOfLivingCellsAround0)
 	EXPECT_EQ(2, g0.GetNumberOfLivingCellsAround(0, 0));//EXPECT_EQ是比较两个值是否相等
 }
 
-
 TEST(testGame, testGetNumberOfLivingCellsAround1)
 {
 	Game g0(3, 3);
@@ -31,7 +30,6 @@ TEST(testGame, testGetNumberOfLivingCellsAround1)
 	g0.cellStatus[2][2] = 0;
 	EXPECT_EQ(3, g0.GetNumberOfLivingCellsAround(1, 1));//EXPECT_EQ是比较两个值是否相等
 }
-
 
 TEST(testGame, testGetNumberOfLivingCellsAround2)
 {

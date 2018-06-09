@@ -21,7 +21,7 @@
     <ClInclude Include="targetver.h">
       <Filter>头文件</Filter>
     </ClInclude>
-    <ClInclude Include="CellMgr.h">
+    <ClInclude Include="GameMgr.h">
       <Filter>头文件</Filter>
     </ClInclude>
   </ItemGroup>
@@ -29,13 +29,13 @@
     <ClCompile Include="stdafx.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
-    <ClCompile Include="TestGTEST.cpp">
-      <Filter>源文件</Filter>
-    </ClCompile>
     <ClCompile Include="TestCase.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
-    <ClCompile Include="CellMgr.cpp">
+    <ClCompile Include="GameMgr.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="Main.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
   </ItemGroup>
