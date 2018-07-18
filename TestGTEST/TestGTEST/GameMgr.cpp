@@ -122,7 +122,6 @@ void Game::ReStart()
 
 void Game::Init()
 {
-	numberOfIterations = 0;
 	autoEvolution = false;
 	sleepTime = 200;
 	cellStatus.resize(rows);

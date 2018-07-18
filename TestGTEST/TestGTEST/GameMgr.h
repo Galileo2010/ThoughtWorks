@@ -37,7 +37,6 @@ private:
 	int rows;
 	int columns;
 	int sleepTime;
-	int numberOfIterations;
 	vector<vector<int>> ages;			// ÄêÁä
 	
 };

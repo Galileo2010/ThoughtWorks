@@ -14,6 +14,7 @@ TEST(testGame, testGetNumberOfLivingCellsAround0)
 	g0.cellStatus[2][1] = 0;
 	g0.cellStatus[2][2] = 0;
 	EXPECT_EQ(2, g0.GetNumberOfLivingCellsAround(0, 0));//EXPECT_EQ是比较两个值是否相等
+	Sleep(10000);
 }
 
 TEST(testGame, testGetNumberOfLivingCellsAround1)
